@@ -1,0 +1,13 @@
+template(name="createIssuePopup")
+  form.create-issue
+    issue(for="issueName") {{_ 'issuename'}}
+    input.js-issue-name#issueName(type="text" name="name" value=name autofocus)
+    button.primary.wide(type="submit") {{_ 'issueadd'}}
+
+template(name="cardIssuesPopup")
+  ul.edit-issues-pop-over
+    each issues
+      li
+        a.card-issue-remove-button.fa.fa-times.js-remove-issue
+        span.card-issue.card-issue-selectable.js-select-issue= this
+  a.quiet-button.full.js-add-issue {{_ 'issue-create'}}

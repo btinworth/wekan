@@ -1,4 +1,12 @@
 {
+    "cardIssuesPopup-title": "Issues",
+    "issues": "Issues",
+    "issue-create": "Add issue",
+    "card-edit-issues": "Edit issues",
+    "issuename": "Issue Identifier",
+    "issueadd": "Add",
+    "createIssuePopup-title": "Add Issue",
+
     "accept": "Accept",
     "act-activity-notify": "[Wekan] Activity Notification",
     "act-addAttachment": "attached __attachment__ to __card__",

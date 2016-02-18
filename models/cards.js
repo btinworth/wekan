@@ -34,6 +34,10 @@ Cards.attachSchema(new SimpleSchema({
     type: String,
     optional: true,
   },
+  issues: {
+    type: [String],
+    optional: true,
+  },
   labelIds: {
     type: [String],
     optional: true,
@@ -73,6 +77,10 @@ Cards.helpers({
 
   board() {
     return Boards.findOne(this.boardId);
+  },
+
+  issues() {
+    return Issues.find({ cardId: this._id });
   },
 
   labels() {
@@ -147,6 +155,14 @@ Cards.mutations({
       mutatedFields.sort = sortIndex;
     }
     return { $set: mutatedFields };
+  },
+
+  addIssue(issue) {
+    return { $addToSet: { issues: issue }};
+  },
+
+  removeIssue(issue) {
+    return { $pull: { issues: issue }};
   },
 
   addLabel(labelId) {

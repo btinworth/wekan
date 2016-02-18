@@ -35,6 +35,16 @@ template(name="cardDetails")
           a.card-label.add-label.js-add-labels(title="{{_ 'card-labels-title'}}")
             i.fa.fa-plus
 
+    .card-details-items
+      .card-details-item.card-details-item-issues
+        h3.card-details-item-title {{_ 'issues'}}
+        a(class="{{#if currentUser.isBoardMember}}js-add-issues{{else}}is-disabled{{/if}}")
+          each issues
+            span.card-issue(class="card-issue-display" title=this)= this
+        if currentUser.isBoardMember
+          a.card-issue.add-issue.js-add-issues(title="{{_ 'card-issues-title'}}")
+            i.fa.fa-plus
+
     //- XXX We should use "editable" to avoid repetiting ourselves
     if currentUser.isBoardMember
       h3.card-details-item-title {{_ 'description'}}
@@ -90,6 +100,7 @@ template(name="cardDetailsActionsPopup")
   ul.pop-over-list
     li: a.js-members {{_ 'card-edit-members'}}
     li: a.js-labels {{_ 'card-edit-labels'}}
+    li: a.js-issues {{_ 'card-edit-issues'}}
     li: a.js-attachments {{_ 'card-edit-attachments'}}
   hr
   ul.pop-over-list
