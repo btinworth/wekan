@@ -1,7 +1,3 @@
-Meteor.startup(() => {
-
-});
-
 Template.cardPatchesPopup.events({
   'click .js-select-patch'(evt) {
     if (Meteor.settings.public.patchLinkPrefix || Meteor.settings.public.patchLinkSufix) {
