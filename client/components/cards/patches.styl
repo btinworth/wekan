@@ -1,0 +1,102 @@
+@import 'nib'
+
+.card-patch
+  border-radius: 4px
+  color: black
+  display: inline-block
+  font-weight: 700
+  font-size: 13px
+  margin-right: 4px
+  margin-bottom: 5px
+  padding: 3px 8px
+  max-width: 100%
+  min-width: 8px
+  overflow: ellipsis
+  height: 18px
+  vertical-align: bottom
+
+  &:hover
+    //color: #a6a6a6
+
+  &.square
+    height: 30px
+    width: @height
+    padding: 0
+
+  &.add-patch
+    box-shadow: 0 0 0 2px darken(white, 25%) inset
+
+    &:hover, &.is-active
+      box-shadow: 0 0 0 2px darken(white, 60%) inset
+
+    i.fa-plus
+      margin-top: 3px
+
+.palette-colors
+  display: flex
+  flex-wrap: wrap
+
+  .palette-color
+    flex-grow: 1
+    display: flex
+    align-items: center
+    justify-content: center
+
+.card-patch-display
+    background: #dbdbdb
+    color: black
+
+.create-patch
+  .card-patch
+    float: left
+    height: 25px
+    margin: 0px 3% 7px 0px
+    width: 10.5%
+    cursor: pointer
+
+.card-patch-selectable
+  border-radius: 3px
+  cursor: pointer
+  margin: 0
+  margin-bottom: 3px
+  width: calc(100% - 52px) // 32px + 20px
+  min-height: 18px
+  padding: 8px
+  position: relative
+  transition: margin-right .1s
+
+  .card-patch-selectable-icon
+    position: absolute
+    top: 8px
+    right: -20px
+
+  &.active:hover,
+  &.active,
+  &.active.selected:hover,
+  &.active.selected
+    padding-right: 32px
+
+    .card-patch-selectable-icon
+      right: 6px
+
+  &.selected,
+  &:hover
+    //opacity: .8
+    color: white
+    background: #2e90d0
+
+.active .card-patch-selectable
+  &,
+  &:hover
+    margin-right: 0
+
+  .card-patch-selectable-icon
+    right: 8px
+
+.card-patch-remove-button
+  border-radius: 3px
+  float: right
+  padding: 8px
+
+  &:hover
+    background: #dbdbdb

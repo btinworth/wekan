@@ -38,6 +38,10 @@ Cards.attachSchema(new SimpleSchema({
     type: [String],
     optional: true,
   },
+  patches: {
+    type: [String],
+    optional: true,
+  },
   labelIds: {
     type: [String],
     optional: true,
@@ -81,6 +85,10 @@ Cards.helpers({
 
   issues() {
     return Issues.find({ cardId: this._id });
+  },
+
+  patches() {
+    return Patches.find({ cardId: this._id });
   },
 
   labels() {
@@ -163,6 +171,14 @@ Cards.mutations({
 
   removeIssue(issue) {
     return { $pull: { issues: issue }};
+  },
+
+  addPatch(patch) {
+    return { $addToSet: { patches: patch }};
+  },
+
+  removePatch(patch) {
+    return { $pull: { patches: patch }};
   },
 
   addLabel(labelId) {
