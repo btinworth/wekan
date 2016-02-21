@@ -88,6 +88,8 @@ BlazeComponent.extendComponent({
       'click .js-member': Popup.open('cardMember'),
       'click .js-add-members': Popup.open('cardMembers'),
       'click .js-add-labels': Popup.open('cardLabels'),
+      'click .js-add-issues': Popup.open('cardIssues'),
+      'click .js-add-patches': Popup.open('cardPatches'),
       'mouseenter .js-card-details'() {
         this.parentComponent().showOverlay.set(true);
         this.parentComponent().mouseHasEnterCardDetails = true;
@@ -142,6 +144,8 @@ Template.cardDetailsActionsPopup.helpers({
 Template.cardDetailsActionsPopup.events({
   'click .js-members': Popup.open('cardMembers'),
   'click .js-labels': Popup.open('cardLabels'),
+  'click .js-issues': Popup.open('cardIssues'),
+  'click .js-patches': Popup.open('cardPatches'),
   'click .js-attachments': Popup.open('cardAttachments'),
   'click .js-start-date': Popup.open('editCardStartDate'),
   'click .js-due-date': Popup.open('editCardDueDate'),

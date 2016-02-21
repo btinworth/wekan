@@ -36,6 +36,25 @@ template(name="cardDetails")
             i.fa.fa-plus
 
     .card-details-items
+      .card-details-item.card-details-item-issues
+        h3.card-details-item-title {{_ 'issues'}}
+        a(class="{{#if currentUser.isBoardMember}}js-add-issues{{else}}is-disabled{{/if}}")
+          each issues
+            span.card-issue(class="card-issue-display" title=this)= this
+        if currentUser.isBoardMember
+          a.card-issue.add-issue.js-add-issues(title="{{_ 'card-issues-title'}}")
+            i.fa.fa-plus
+
+      .card-details-item.card-details-item-patches
+        h3.card-details-item-title {{_ 'patches'}}
+        a(class="{{#if currentUser.isBoardMember}}js-add-patches{{else}}is-disabled{{/if}}")
+          each patches
+            span.card-patch(class="card-patch-display" title=this)= this
+        if currentUser.isBoardMember
+          a.card-patch.add-patch.js-add-patches(title="{{_ 'card-patches-title'}}")
+            i.fa.fa-plus
+
+    .card-details-items
       if startAt
         .card-details-item.card-details-item-start
           h3.card-details-item-title {{_ 'card-start'}}
@@ -45,7 +64,6 @@ template(name="cardDetails")
         .card-details-item.card-details-item-due
           h3.card-details-item-title {{_ 'card-due'}}
           +cardDueDate
-
 
     //- XXX We should use "editable" to avoid repetiting ourselves
     if currentUser.isBoardMember
@@ -102,6 +120,8 @@ template(name="cardDetailsActionsPopup")
   ul.pop-over-list
     li: a.js-members {{_ 'card-edit-members'}}
     li: a.js-labels {{_ 'card-edit-labels'}}
+    li: a.js-issues {{_ 'card-edit-issues'}}
+    li: a.js-patches {{_ 'card-edit-patches'}}
     li: a.js-attachments {{_ 'card-edit-attachments'}}
     //li: a.js-start-date {{_ 'editCardStartDatePopup-title'}}
     li: a.js-due-date {{_ 'editCardDueDatePopup-title'}}

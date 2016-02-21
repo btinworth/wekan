@@ -1,0 +1,13 @@
+template(name="createPatchPopup")
+  form.create-patch
+    patch(for="patchName") {{_ 'patchname'}}
+    input.js-patch-name#patchName(type="text" name="name" value=name autofocus)
+    button.primary.wide(type="submit") {{_ 'patchadd'}}
+
+template(name="cardPatchesPopup")
+  ul.edit-patches-pop-over
+    each patches
+      li
+        a.card-patch-remove-button.fa.fa-times.js-remove-patch
+        span.card-patch.card-patch-selectable.js-select-patch= this
+  a.quiet-button.full.js-add-patch {{_ 'patch-create'}}
