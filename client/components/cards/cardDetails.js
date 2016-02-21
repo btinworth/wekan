@@ -118,7 +118,7 @@ BlazeComponent.extendComponent({
         UnsavedEdits.set(this._getUnsavedEditKey(), this.getValue());
       }
     }
-    super();
+    super.close();
   }
 
   reset() {
