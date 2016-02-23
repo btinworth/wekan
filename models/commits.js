@@ -1,6 +1,6 @@
-Patches = new Mongo.Collection('patches');
+Commits = new Mongo.Collection('commits');
 
-Patches.attachSchema(new SimpleSchema({
+Commits.attachSchema(new SimpleSchema({
   boardId: {
     type: String,
   },
@@ -15,7 +15,7 @@ Patches.attachSchema(new SimpleSchema({
   },
 }));
 
-Patches.allow({
+Commits.allow({
   insert(userId, doc) {
     return allowIsBoardMember(userId, Boards.findOne(doc.boardId));
   },
@@ -28,14 +28,14 @@ Patches.allow({
   fetch: ['userId', 'boardId'],
 });
 
-Patches.helpers({
+Commits.helpers({
   user() {
     return Users.findOne(this.userId);
   },
 });
 
-Patches.hookOptions.after.update = { fetchPrevious: false };
+Commits.hookOptions.after.update = { fetchPrevious: false };
 
-Patches.before.insert((userId, doc) => {
+Commits.before.insert((userId, doc) => {
   doc.userId = userId;
 });

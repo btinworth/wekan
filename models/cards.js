@@ -38,7 +38,7 @@ Cards.attachSchema(new SimpleSchema({
     type: [String],
     optional: true,
   },
-  patches: {
+  commits: {
     type: [String],
     optional: true,
   },
@@ -95,8 +95,8 @@ Cards.helpers({
     return Issues.find({ cardId: this._id });
   },
 
-  patches() {
-    return Patches.find({ cardId: this._id });
+  commits() {
+    return Commits.find({ cardId: this._id });
   },
 
   labels() {
@@ -181,12 +181,12 @@ Cards.mutations({
     return { $pull: { issues: issue }};
   },
 
-  addPatch(patch) {
-    return { $addToSet: { patches: patch }};
+  addCommit(commit) {
+    return { $addToSet: { commits: commit }};
   },
 
-  removePatch(patch) {
-    return { $pull: { patches: patch }};
+  removeCommit(commit) {
+    return { $pull: { commits: commit }};
   },
 
   addLabel(labelId) {

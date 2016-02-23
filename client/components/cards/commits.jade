@@ -1,0 +1,13 @@
+template(name="createCommitPopup")
+  form.create-commit
+    label(for="commitName") {{_ 'commitname'}}
+    input.js-commit-name#commitName(type="text" name="name" value=name autofocus)
+    button.primary.wide(type="submit") {{_ 'commitadd'}}
+
+template(name="cardCommitsPopup")
+  ul.edit-commits-pop-over
+    each commits
+      li
+        a.card-commit-remove-button.fa.fa-times.js-remove-commit
+        span.card-commit.card-commit-selectable.js-select-commit= this
+  a.quiet-button.full.js-add-commit {{_ 'commit-create'}}

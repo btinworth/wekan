@@ -28,10 +28,10 @@ template(name="minicard")
         .badge
           span.badge-icon.fa.fa-bug
           span.badge-text= issues.length
-      if patches.length
+      if commits.length
         .badge
           span.badge-icon.fa.fa-code-fork
-          each patches
+          each commits
             span.badge-text= this
             span.badge-text= ' '
       if startAt
