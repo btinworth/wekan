@@ -1,6 +1,6 @@
 template(name="createIssuePopup")
   form.create-issue
-    issue(for="issueName") {{_ 'issuename'}}
+    label(for="issueName") {{_ 'issuename'}}
     input.js-issue-name#issueName(type="text" name="name" value=name autofocus)
     button.primary.wide(type="submit") {{_ 'issueadd'}}
 

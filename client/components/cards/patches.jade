@@ -1,6 +1,6 @@
 template(name="createPatchPopup")
   form.create-patch
-    patch(for="patchName") {{_ 'patchname'}}
+    label(for="patchName") {{_ 'patchname'}}
     input.js-patch-name#patchName(type="text" name="name" value=name autofocus)
     button.primary.wide(type="submit") {{_ 'patchadd'}}
 

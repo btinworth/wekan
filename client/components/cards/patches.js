@@ -23,8 +23,10 @@ Template.createPatchPopup.events({
   'submit .create-patch'(evt, tpl) {
     const card = Cards.findOne(Session.get('currentCard'));
     const name = tpl.$('#patchName').val().trim();
-    card.addPatch(name);
-    Popup.close();
+    if (name.length > 0) {
+      card.addPatch(name);
+      Popup.close();
+    }
     evt.preventDefault();
   },
 });

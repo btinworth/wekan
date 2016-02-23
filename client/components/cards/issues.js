@@ -24,10 +24,10 @@ Template.createIssuePopup.events({
   'submit .create-issue'(evt, tpl) {
     const card = Cards.findOne(Session.get('currentCard'));
     const issue = tpl.$('#issueName').val().trim();
-    //if (/^[0-9]+$$/.test(issue)) {
-    card.addIssue(issue);
-    Popup.close();
-    //}
+    if (issue.length > 0 /*&& (/^[0-9]+$$/.test(issue))*/) {
+      card.addIssue(issue);
+      Popup.close();
+    }
     evt.preventDefault();
   },
 });
