@@ -150,6 +150,16 @@ Template.cardDetailsActionsPopup.events({
   'click .js-start-date': Popup.open('editCardStartDate'),
   'click .js-due-date': Popup.open('editCardDueDate'),
   'click .js-move-card': Popup.open('moveCard'),
+  'click .js-move-card-to-top'(evt) {
+    evt.preventDefault();
+    const minOrder = _.min(this.list().cards().map((c) => c.sort));
+    this.move(this.listId, minOrder / 2);
+  },
+  'click .js-move-card-to-bottom'(evt) {
+    evt.preventDefault();
+    const maxOrder = _.max(this.list().cards().map((c) => c.sort));
+    this.move(this.listId, Math.floor(maxOrder) + 1);
+  },
   'click .js-archive'(evt) {
     evt.preventDefault();
     this.archive();

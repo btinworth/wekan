@@ -4,7 +4,7 @@ Template.editor.onRendered(() => {
   autosize($textarea);
 
   $textarea.escapeableTextComplete([
-    // Emojies
+    // Emoji
     {
       match: /\B:([\-+\w]*)$/,
       search(term, callback) {
@@ -45,7 +45,7 @@ Template.editor.onRendered(() => {
 });
 
 // XXX I believe we should compute a HTML rendered field on the server that
-// would handle markdown, emojies and user mentions. We can simply have two
+// would handle markdown, emoji and user mentions. We can simply have two
 // fields, one source, and one compiled version (in HTML) and send only the
 // compiled version to most users -- who don't need to edit.
 // In the meantime, all the transformation are done on the client using the
@@ -61,18 +61,20 @@ Blaze.Template.registerHelper('mentions', new Template('mentions', function() {
   const mentionRegex = /\B@(\w*)/gi;
   let content = Blaze.toHTML(view.templateContentBlock);
 
-  let currentMention, knowedUser, linkClass, linkValue, link;
-  while (Boolean(currentMention = mentionRegex.exec(content))) {
-
-    knowedUser = _.findWhere(knowedUsers, { username: currentMention[1] });
-    if (!knowedUser)
+  let currentMention;
+  while ((currentMention = mentionRegex.exec(content)) !== null) {
+    const [fullMention, username] = currentMention;
+    const knowedUser = _.findWhere(knowedUsers, { username });
+    if (!knowedUser) {
       continue;
+    }
 
-    linkValue = [' ', at, knowedUser.username];
-    linkClass = 'atMention js-open-member';
-    if (knowedUser.userId === Meteor.userId())
+    const linkValue = [' ', at, knowedUser.username];
+    let linkClass = 'atMention js-open-member';
+    if (knowedUser.userId === Meteor.userId()) {
       linkClass += ' me';
-    link = HTML.A({
+    }
+    const link = HTML.A({
       'class': linkClass,
       // XXX Hack. Since we stringify this render function result below with
       // `Blaze.toHTML` we can't rely on blaze data contexts to pass the
@@ -81,7 +83,7 @@ Blaze.Template.registerHelper('mentions', new Template('mentions', function() {
       'data-userId': knowedUser.userId,
     }, linkValue);
 
-    content = content.replace(currentMention[0], Blaze.toHTML(link));
+    content = content.replace(fullMention, Blaze.toHTML(link));
   }
 
   return HTML.Raw(content);
